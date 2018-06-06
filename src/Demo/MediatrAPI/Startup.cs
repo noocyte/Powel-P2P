@@ -27,6 +27,7 @@ namespace MediatrAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             services.AddSingleton<IValueRepository, ValueRepository>();
             services.AddMediatR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -46,6 +47,10 @@ namespace MediatrAPI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ValueHub>("/valuehub");
+            });
             app.UseMvc();
         }
     }

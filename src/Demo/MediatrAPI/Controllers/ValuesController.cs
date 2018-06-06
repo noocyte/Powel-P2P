@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MediatrAPI.Requests;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
