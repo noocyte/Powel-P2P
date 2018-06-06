@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using MediatrAPI.Requests;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
@@ -13,6 +13,7 @@ namespace MediatrAPI
         {
             _mediator = mediator;
         }
+
         public async Task SendValue(string value)
         {
             await _mediator.Send(new PostValueRequest(value));

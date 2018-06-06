@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using MediatrAPI.Repositories;
 using MediatrAPI.Requests;
 using System.Collections.Generic;
@@ -9,17 +9,18 @@ namespace MediatrAPI.Handlers
 {
     public class GetValuesRequestHandler : IRequestHandler<GetValuesRequest, IEnumerable<string>>
     {
+        private readonly IValueRepository _repository;
+
         public GetValuesRequestHandler(IValueRepository repository)
         {
-            Repository = repository;
+            _repository = repository;
         }
 
-        private IValueRepository Repository { get; }
 
         public async Task<IEnumerable<string>> Handle(GetValuesRequest request, CancellationToken cancellationToken)
         {
             await Task.Delay(5, cancellationToken);
-            return Repository.GetValues();
+            return _repository.GetValues();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using MediatrAPI.Notifications;
 using MediatrAPI.Repositories;
 using MediatrAPI.Requests;
@@ -10,19 +10,19 @@ namespace MediatrAPI.Handlers
 {
     public class PostValueRequestHandler : IRequestHandler<PostValueRequest, IEnumerable<string>>
     {
+        private readonly IValueRepository _repository;
+        private readonly IMediator _mediator;
+
         public PostValueRequestHandler(IValueRepository repository, IMediator mediator)
         {
-            Repository = repository;
-            Mediator = mediator;
+            _repository = repository;
+            _mediator = mediator;
         }
-
-        private IValueRepository Repository { get; }
-        private IMediator Mediator { get; }
 
         public async Task<IEnumerable<string>> Handle(PostValueRequest request, CancellationToken cancellationToken)
         {
-            var response = Repository.StoreValue(request.Value);
-            await Mediator.Publish(new NewValueAddedNotification(request.Value));
+            var response = _repository.StoreValue(request.Value);
+            await _mediator.Publish(new NewValueAddedNotification(request.Value));
             return response;
         }
     }

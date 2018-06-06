@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using MediatrAPI.Repositories;
 using MediatrAPI.Requests;
 using System.Threading;
@@ -10,15 +10,15 @@ namespace MediatrAPI.Handlers
     {
         public GetValueRequestHandler(IValueRepository repository)
         {
-            Repository = repository;
+            _repository = repository;
         }
 
-        private IValueRepository Repository { get; }
+        private readonly IValueRepository _repository;
 
         public async Task<string> Handle(GetValueRequest request, CancellationToken cancellationToken)
         {
             await Task.Delay(5, cancellationToken);
-            return Repository.GetValue(request.Id);
+            return _repository.GetValue(request.Id);
         }
     }
 }

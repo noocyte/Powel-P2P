@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace MediatrAPI.Repositories
 {
@@ -8,6 +8,7 @@ namespace MediatrAPI.Repositories
         string GetValue(int id);
         IEnumerable<string> StoreValue(string value);
     }
+
     public class ValueRepository : IValueRepository
     {
         private readonly List<string> _values = new List<string>();

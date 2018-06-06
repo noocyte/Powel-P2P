@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using MediatrAPI.Notifications;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading;
