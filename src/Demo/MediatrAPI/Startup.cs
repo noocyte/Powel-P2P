@@ -45,6 +45,7 @@ namespace MediatrAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
